@@ -12,5 +12,5 @@
 
 (global-set-key (kbd "\C-c\C-g") 'goto-line)
 
-(global-set-key "\C-c\M-c" 'comment-region)
-(global-set-key "\C-c\M-u" 'uncomment-region)
+(global-set-key "\C-cC" 'comment-region)
+(global-set-key "\C-cU" 'uncomment-region)
