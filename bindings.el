@@ -18,3 +18,5 @@
 
 (global-set-key "\C-cC" 'comment-region)
 (global-set-key "\C-cU" 'uncomment-region)
+
+(global-set-key (kbd "C-x g") 'magit-status)
