@@ -38,6 +38,12 @@
           (lambda ()
             (flycheck-mode t)))
 
+;;; prettier
+
+(require 'prettier-js)
+(add-hook 'js2-mode-hook 'prettier-js-mode)
+(add-hook 'rjsx-mode-hook 'prettier-js-mode)
+
 
 
 ;;; local.el ends here
