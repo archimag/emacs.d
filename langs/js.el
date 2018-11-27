@@ -3,8 +3,7 @@
 
 ;;; Code:
 
-
-
+;;(require 'js2-mode)
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 
 ;;; flycheck
@@ -24,6 +23,10 @@
 
 (flycheck-add-mode 'javascript-eslint 'js2-mode)
 (flycheck-add-mode 'javascript-eslint 'rjsx-mode)
+
+;;; mocha
+
+(setf mocha-which-node nil)
 
 ;;; hooks
 
@@ -46,4 +49,4 @@
 
 
 
-;;; local.el ends here
+;;; js.el ends here
