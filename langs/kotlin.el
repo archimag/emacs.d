@@ -4,7 +4,6 @@
 ;;; Code:
 
 (require 'gradle-mode)
-(gradle-mode 1)
 (setf gradle-use-gradlew t)
 (setf gradle-gradlew-executable "./gradlew")
 
