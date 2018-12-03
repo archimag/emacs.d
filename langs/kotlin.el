@@ -13,6 +13,13 @@
     (require 'flycheck-kotlin)
     (flycheck-kotlin-setup)))
 
+(add-to-list 'compilation-error-regexp-alist 'gradlew-error)
+(add-to-list 'compilation-error-regexp-alist 'gradlew-warn)
+(add-to-list 'compilation-error-regexp-alist-alist
+             '(gradlew-error "^e: \\(.+?\\): (\\([0-9]+\\), \\([0-9]+\\)):.*" 1 2 3))
+(add-to-list 'compilation-error-regexp-alist-alist
+             '(gradlew-warn "^w: \\(.+?\\): (\\([0-9]+\\), \\([0-9]+\\)):.*" 1 2 3 1))
+
 (require 'lsp-mode)
 
 (defun is-gradle-project-dir (dir)
@@ -31,10 +38,15 @@
  #'find-gradle-root-dir
   '("kotlin-language-server"))
 
+(defun gradle-test-file ()
+  (interactive)
+  (gradle-single-test--daemon (file-name-base buffer-file-name)))
+
 (add-hook 'kotlin-mode-hook
           (lambda ()
             (flycheck-mode t)
-            (lsp-kotlin-mode-enable)))
+            (lsp-kotlin-mode-enable)
+            (local-set-key (kbd "C-c C-l") #'gradle-test-file)))
 
 
 ;;; kotlin.el ends here
