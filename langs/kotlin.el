@@ -44,8 +44,10 @@
 (add-hook 'kotlin-mode-hook
           (lambda ()
             (flycheck-mode t)
-            (lsp-kotlin-mode-enable)
-            (local-set-key (kbd "C-c C-l") #'gradle-test-file)))
+            (lsp-kotlin-mode-enable)))
 
+(eval-after-load 'kotlin-mode
+  (lambda ()
+    (define-key kotlin-mode-map [?\C-c ?\C-l] #'gradle-test-file)))
 
 ;;; kotlin.el ends here
