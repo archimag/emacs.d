@@ -41,6 +41,10 @@
   (interactive)
   (gradle-single-test--daemon (file-name-base buffer-file-name)))
 
+(defun gradle-compile-kotlin ()
+  (interactive)
+  (gradle-execute--daemon "compileKotlin"))
+
 (add-hook 'kotlin-mode-hook
           (lambda ()
             (flycheck-mode t)
@@ -48,6 +52,7 @@
 
 (eval-after-load 'kotlin-mode
   (lambda ()
-    (define-key kotlin-mode-map [?\C-c ?\C-l] #'gradle-test-file)))
+    (define-key kotlin-mode-map [?\C-c ?\C-l] #'gradle-test-file)
+    (define-key kotlin-mode-map [?\C-c ?\C-q] #'gradle-test-file)))
 
 ;;; kotlin.el ends here
