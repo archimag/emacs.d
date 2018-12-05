@@ -41,9 +41,22 @@
   (interactive)
   (gradle-single-test--daemon (file-name-base buffer-file-name)))
 
-(defun gradle-compile-kotlin ()
-  (interactive)
-  (gradle-execute--daemon "compileKotlin"))
+(setf last-gradle-test-name "")
+
+(defun gradle-test-class (test-name)
+  (interactive
+   (list (read-string "Gradle test class: " last-gradle-test-name nil "")))
+  (setf last-gradle-test-name test-name)
+  (gradle-single-test--daemon test-name)) 
+
+
+(setf last-compile-kotlin-prefix "")
+
+(defun gradle-compile-kotlin (prefix)
+  (interactive
+   (list (read-string "Gradle :compileKotlin prefix: " last-compile-kotlin-prefix nil "")))
+  (setf last-compile-kotlin-prefix prefix)
+  (gradle-execute--daemon (format "%s:compileKotlin" prefix)))
 
 (add-hook 'kotlin-mode-hook
           (lambda ()
@@ -53,6 +66,7 @@
 (eval-after-load 'kotlin-mode
   (lambda ()
     (define-key kotlin-mode-map [?\C-c ?\C-l] #'gradle-test-file)
-    (define-key kotlin-mode-map [?\C-c ?\C-q] #'gradle-test-file)))
+    (define-key kotlin-mode-map [?\C-c ?\C-i] #'gradle-test-class)
+    (define-key kotlin-mode-map [?\C-c ?\C-q] #'gradle-compile-kotlin)))
 
 ;;; kotlin.el ends here
