@@ -49,6 +49,12 @@
   (setf last-gradle-test-name test-name)
   (gradle-single-test--daemon test-name)) 
 
+(defun gradle-test-class (test-name)
+  (interactive
+   (list (read-string "Gradle test class: " last-gradle-test-name nil "")))
+  (setf last-gradle-test-name test-name)
+  ;; (gradle-single-test--daemon test-name)
+  (gradle-execute--daemon (format "test --tests %s"  test-name)))
 
 (setf last-compile-kotlin-prefix "")
 
