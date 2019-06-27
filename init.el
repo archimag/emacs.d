@@ -81,7 +81,7 @@
 ;; tabs
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(setq-default tab-width 4)
+(setq-default tab-width 2)
 (setq-default indent-tabs-mode nil)
 (setq-default electric-indent-mode nil)
 
