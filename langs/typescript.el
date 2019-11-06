@@ -1,5 +1,7 @@
 (add-to-list 'auto-mode-alist '("\\.tsx\\'" . typescript-mode))
 
+(require 'mocha)
+
 (defun setup-tide-mode ()
   (interactive)
   (tide-setup)
@@ -13,7 +15,15 @@
   (company-mode +1)
   )
 
-
+(defun mocha-test-at-point2 ()
+  "Test the current innermost 'it' or 'describe' or the file if none is found."
+  (interactive)
+  (let ((file (buffer-file-name))
+        (test-at-point (progn
+                         (save-excursion
+                           (re-search-backward "it(\'\\([^\'\"]+\\)\'"))
+                         (match-string 1))))
+    (mocha-run file test-at-point)))
 
 
 (defun setup-typescript-mode ()
@@ -28,7 +38,7 @@
   (company-mode +1)
   (local-set-key (kbd "M-?") #'company-complete)
   ;; mocha
-  (local-set-key (kbd "C-c C-i") #'mocha-test-at-point)
+  (local-set-key (kbd "C-c C-i") #'mocha-test-at-point2)
   (local-set-key (kbd "C-c C-l") #'mocha-test-file)
   (make-local-variable 'mocha-command)
   (setq-local mocha-command "node_modules/.bin/ts-mocha --paths"))
