@@ -46,4 +46,6 @@
 (add-hook 'typescript-mode-hook 'setup-typescript-mode)
 
 (require 'prettier-js)
+
+(add-hook 'typescript-mode-hook 'add-node-modules-path)
 (add-hook 'typescript-mode-hook 'prettier-js-mode)
