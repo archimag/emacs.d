@@ -1,6 +1,10 @@
 (add-to-list 'auto-mode-alist '("\\.tsx\\'" . typescript-mode))
 
+(setq typescript-indent-level 2)
+
+(require 'typescript-mode)
 (require 'mocha)
+(require 'prettier-js)
 
 (defun setup-tide-mode ()
   (interactive)
@@ -44,8 +48,8 @@
   (setq-local mocha-command "node_modules/.bin/ts-mocha --paths"))
 
 (add-hook 'typescript-mode-hook 'setup-typescript-mode)
-
-(require 'prettier-js)
-
 (add-hook 'typescript-mode-hook 'add-node-modules-path)
 (add-hook 'typescript-mode-hook 'prettier-js-mode)
+
+
+
