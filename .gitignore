@@ -1,5 +1,8 @@
+.*
 local/
 auto-save-list/
 session.*
 elpa/
 games/
+transient/
+tutorial/
