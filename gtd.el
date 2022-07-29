@@ -1,6 +1,6 @@
 (require 'org)
 
-(defvar my-gtd-dir "~/gtd/")
+n(defvar my-gtd-dir "~/gtd/")
 
 (defun my-gtd-file (name)
   (format "%s%s" my-gtd-dir name))
@@ -20,8 +20,10 @@
                            (,(my-gtd-file "someday.org") :level . 1)
                            (,(my-gtd-file "tickler.org") :maxlevel . 2)))
 
-(global-set-key (kbd "\C-c c") 'org-capture)
-(global-set-key (kbd "C-c a") 'org-agenda)
+(global-set-key (kbd "C-c l") #'org-store-link)
+(global-set-key (kbd "C-c a") #'org-agenda)
+(global-set-key (kbd "\C-c c") #'org-capture)
+
 
 (global-set-key (kbd "\C-c i")
                 (lambda ()
