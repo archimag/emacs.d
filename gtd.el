@@ -39,3 +39,8 @@ n(defvar my-gtd-dir "~/gtd/")
                 (lambda ()
                   (interactive)
                   (find-file (my-gtd-file "tickler.org"))))
+
+(global-set-key (kbd "\C-c r")
+                (lambda ()
+                  (interactive)
+                  (find-file (my-gtd-file "refs.org"))))
