@@ -1,6 +1,6 @@
 (require 'org)
 
-n(defvar my-gtd-dir "~/gtd/")
+(defvar my-gtd-dir "~/gtd/")
 
 (defun my-gtd-file (name)
   (format "%s%s" my-gtd-dir name))
