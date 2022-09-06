@@ -6,6 +6,7 @@
   (format "%s%s" my-gtd-dir name))
 
 (setq org-agenda-files `(,(my-gtd-file "projects.org")
+                         ,(my-gtd-file "work.org")
                          ,(my-gtd-file "someday.org")
                          ,(my-gtd-file "tickler.org")))
 
@@ -29,6 +30,11 @@
                 (lambda ()
                   (interactive)
                   (find-file (my-gtd-file "inbox.org"))))
+
+(global-set-key (kbd "\C-c w")
+                (lambda ()
+                  (interactive)
+                  (find-file (my-gtd-file "work.org"))))
 
 (global-set-key (kbd "\C-c p")
                 (lambda ()
