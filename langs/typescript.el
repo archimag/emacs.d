@@ -25,7 +25,7 @@
   (let ((file (buffer-file-name))
         (test-at-point (progn
                          (save-excursion
-                           (re-search-backward "it(\'\\([^\'\"]+\\)\'"))
+                           (re-search-backward "^[[:space:]]*it(\'\\([^\'\"]+\\)\'"))
                          (match-string 1))))
     (mocha-run file test-at-point)))
 
