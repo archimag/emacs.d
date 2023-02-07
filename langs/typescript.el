@@ -4,20 +4,6 @@
 
 (require 'typescript-mode)
 (require 'mocha)
-(require 'prettier-js)
-
-(defun setup-tide-mode ()
-  (interactive)
-  (tide-setup)
-  (flycheck-mode +1)
-  (setq flycheck-check-syntax-automatically '(save mode-enabled))
-  (eldoc-mode +1)
-  (tide-hl-identifier-mode +1)
-  ;; company is an optional dependency. You have to
-  ;; install it separately via package-install
-  ;; `M-x package-install [ret] company`
-  (company-mode +1)
-  )
 
 (defun mocha-test-at-point2 ()
   "Test the current innermost 'it' or 'describe' or the file if none is found."
@@ -33,14 +19,19 @@
 (defun setup-typescript-mode ()
   (interactive)
   ;; tide
-  (tide-setup)
-  (flycheck-mode +1)
-  (setq flycheck-check-syntax-automatically '(save mode-enabled))
-  (eldoc-mode +1)
-  (tide-hl-identifier-mode +1)
+  ;;(tide-setup)
+  ;;(tide-hl-identifier-mode +1)
+
+  ;; eglot
+  (eglot-ensure)
+
+  ;; prettier
+  (prettier-mode t)
+
+  ;; tree-setter
+  (tree-sitter-hl-mode)
   ;; company
   (company-mode +1)
-  (local-set-key (kbd "M-?") #'company-complete)
   ;; mocha
   (local-set-key (kbd "C-c C-i") #'mocha-test-at-point2)
   (local-set-key (kbd "C-c C-l") #'mocha-test-file)
@@ -48,8 +39,7 @@
   (setq-local mocha-command "node_modules/.bin/ts-mocha --paths"))
 
 (add-hook 'typescript-mode-hook 'setup-typescript-mode)
-(add-hook 'typescript-mode-hook 'add-node-modules-path)
-(add-hook 'typescript-mode-hook 'prettier-js-mode)
-
+(add-hook 'tsx-ts-mode-hook #'setup-typescript-mode)
+(add-hook 'typescript-mode-hook '(lambda () (prettier-mode t)))
 
 

@@ -19,4 +19,17 @@
 (global-set-key "\C-cC" 'comment-region)
 (global-set-key "\C-cU" 'uncomment-region)
 
+;; magit
 (global-set-key (kbd "C-x g") 'magit-status)
+
+;; flymake
+(require 'flymake)
+(define-key flymake-mode-map (kbd "M-n") 'flymake-goto-next-error)
+(define-key flymake-mode-map (kbd "M-p") 'flymake-goto-prev-error)
+
+;; eglot
+(require 'eglot)
+(define-key eglot-mode-map (kbd "C-c C-c r") 'eglot-rename)
+(define-key eglot-mode-map (kbd "C-c C-c h") 'eldoc)
+(define-key eglot-mode-map (kbd "M-?") 'xref-find-references)
+(define-key eglot-mode-map (kbd "M-<tab>") 'company-complete)
